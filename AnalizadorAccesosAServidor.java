@@ -64,9 +64,33 @@ public class AnalizadorAccesosAServidor
 
     
     
+    /**
+     * Metodo para obtener la pagina web mas visitada
+     */
     public String paginaWebMasSolicitada() 
     {
-        return "";
+        ArrayList<Acceso> acceso = new ArrayList<>(); 
+        acceso.addAll(accesos);
+        String paginaADevolver = null; 
+        int contadorMasCoincidencias = 0; //Contador donde almacenaremos el mayor numero de coincidencias
+        if(accesos.size() > 0){  
+            for(int i= 0; i < acceso.size() ; i++){
+                int contador = 0; //Contador donde almacenaremos las coincidencias de cada web.
+                for(int j = i + 1; j < acceso.size() ; j++){ //Bucle para comprobar las coincidencias
+                    if(acceso.get(j).getPaginaWeb().equals(acceso.get(i).getPaginaWeb())){
+                        contador ++;
+                        acceso.remove(j);
+                        j--;
+                    }
+                }
+                if(contador >= contadorMasCoincidencias){ 
+                    contadorMasCoincidencias = contador;
+                    paginaADevolver = acceso.get(i).getPaginaWeb();
+                }
+                
+            }
+        }
+        return paginaADevolver;
     }
     
     public String clienteConMasAccesosExitosos()
