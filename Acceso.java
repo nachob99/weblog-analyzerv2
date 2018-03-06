@@ -3,34 +3,83 @@ import java.util.Arrays;
 public class Acceso
 {
     private String[] arrayDatos;
+    private int ano;
+    private int mes;
+    private int dia;
+    private int hora;
+    private int minutos;
+    private String ip;
+    private String web;
+    private int codigo;
 
     public Acceso(String dato)
     {
-        arrayDatos = dato.split(" ");
+        String[] arrayDatos = dato.split(" ");
+        ano = Integer.parseInt(arrayDatos[1].substring(1,5));
+        mes = Integer.parseInt(arrayDatos[2]);
+        dia = Integer.parseInt(arrayDatos[3]);
+        hora = Integer.parseInt(arrayDatos[4]);
+        minutos = Integer.parseInt(arrayDatos[5].substring(0,2));
+        web = arrayDatos[6];
+        ip = arrayDatos[0];
+        codigo = Integer.parseInt(arrayDatos[7]);
     }
 
     public int getAno() 
     {
-        return Integer.parseInt(arrayDatos[0]);
+        return ano;
     }
 
     public int getMes()
     {
-        return Integer.parseInt(arrayDatos[1]);
+        return mes;
     }
 
     public int getDia()
     {
-        return Integer.parseInt(arrayDatos[2]);
+        return dia;
     }
 
+    /**
+     * Devuelve la hora en la que el cliente ha accedido al servidor.
+     * @return Devuelve un int que es la hora.
+     */    
     public int getHora()
     {
-        return Integer.parseInt(arrayDatos[3]);
+        return hora;
     }
 
+    /**
+     * Devuelve el minuto en el que el cliente ha accedido al servidor.
+     * @return Devuelve un int que es el minuto.
+     */    
     public int getMinutos()
     {
-        return Integer.parseInt(arrayDatos[4]);
+        return minutos;
     }
+
+    /**
+     * Devuelve la pagina web a la que ha accedido el usuario.
+     * @return Devuelve un String que es la pagina web.
+     */
+    public String getPaginaWeb() {
+        return web;
+    }
+
+    /**
+     * Devuelve la direccion IP con la que ha accedido el cliente.
+     * @return Devuelve un String que es la direccion IP.
+     */
+    public String getDireccionIP() {
+        return ip;
+    }
+
+    /**
+     * Devuelve el codigo HTTP con el que responde el servidor.
+     * @return Devuelve un String que es el codigo.
+     */
+    public String getCodigo() {
+        return Integer.toString(codigo);
+    }    
+
 }
